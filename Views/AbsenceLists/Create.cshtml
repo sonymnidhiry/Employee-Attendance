@@ -1,0 +1,103 @@
+﻿@model TrackEmployeeAbsence.ViewModel.EmployeeAbsenceViewModel
+
+@{
+    ViewBag.Title = "Create";
+}
+
+<h2>Create</h2>
+
+
+@using (Html.BeginForm())
+{
+    @Html.AntiForgeryToken()
+
+    <div class="form-horizontal">
+        <h4>AbsenceList</h4>
+        <hr />
+
+
+        <dl class="dl-horizontal">
+            <dt>
+                @Html.DisplayNameFor(model => model.EmployeeId)
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.EmployeeId)
+                @Html.HiddenFor(model => model.EmployeeId)
+            </dd>
+
+            <dt>
+                @Html.DisplayNameFor(model => model.FirstName)
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.FirstName)
+                @Html.HiddenFor(model => model.FirstName)
+            </dd>
+
+            <dt>
+                @Html.DisplayNameFor(model => model.LastName)
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.LastName)
+                @Html.HiddenFor(model => model.LastName)
+            </dd>
+
+            <dt>
+                @Html.LabelFor(model => model.LeaveDate)
+            </dt>
+
+            <dd>
+                @Html.EditorFor(model=>model.LeaveDate, new { htmlAttributes=new {@class="datepicker" } })
+                @Html.HiddenFor(model => model.LeaveDate)
+            </dd>
+
+            <dt>
+                @Html.LabelFor(model => model.LeaveReason)
+            </dt>
+            <br />
+            <dd> 
+                @Html.DropDownListFor(model => model.LeaveReason, new SelectList(new[]{"Sick Day",
+ "Personal Day", "Vacation Day","Unpaid Day","Remote Pay"}))
+                @Html.HiddenFor(model => model.LeaveReason)
+                @Html.ValidationMessageFor(model => model.LeaveReason, "", new { @class = "text-danger" })
+            </dd>
+
+        </dl>
+
+        <div class="form-group">
+            <div class="col-md-offset-2 col-md-10">
+                <input type="submit" value="Apply" class="btn btn-default" />
+            </div>
+        </div>
+    </div>
+}
+
+<div>
+    @Html.ActionLink("Back to List", "Index")
+</div>
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+
+    <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
+    <link rel="stylesheet" href="/resources/demos/style.css">
+    <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
+    <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+
+    <script>
+        var date = new Date();
+        var maxdate = date.getDate();
+        $(function () {
+            $(".datepicker").datepicker({
+                defaultDate: maxdate,
+                minDate: '-2M',
+                maxDate: '+0D'
+            });
+        });
+
+    </script>
+}
+
+

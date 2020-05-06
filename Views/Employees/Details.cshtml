@@ -1,0 +1,70 @@
+﻿@model IEnumerable<TrackEmployeeAbsence.ViewModel.EmpDateRangeViewModel>
+
+
+
+@{
+    ViewBag.Title = "Details";
+}
+
+
+<div id="test">
+    <table class="table">
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.FirstName)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.LastName)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Counts)
+            </th>
+            
+            <th></th>
+        </tr>
+
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.FirstName)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.LastName)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Counts)
+                </td>
+                
+            </tr>
+        }
+
+    </table>
+</div>
+<p>
+    @*@Html.ActionLink("Edit", "Edit", new { id = Model.EmployeeId }) |*@
+    @Html.ActionLink("Back to List", "Index")
+</p>
+
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+
+    <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
+    <link rel="stylesheet" href="/resources/demos/style.css">
+    <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
+    <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+
+    <script>
+        var date = new Date();
+        var maxdate = date.getDate();
+        $(function () {
+            $(".datepicker").datepicker({
+                defaultDate: maxdate
+            });
+        });
+
+
+
+    </script>
+}
